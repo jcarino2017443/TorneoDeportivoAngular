@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "torneo-9b3bb": {
+      "hosting": {
+        "Torneo": [
+          "torneo-9b3bb"
+        ]
+      }
+    }
+  }
+}

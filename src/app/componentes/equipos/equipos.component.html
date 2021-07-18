@@ -1,0 +1,104 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="d-grid gap-2 d-md-block">
+          <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="modalAgregarEquipo">
+            Agregar Equipos
+          </button>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <tr *ngFor="let equi of EquiposList">
+        <div class="card mb-3">
+          <div class="card-header">
+            {{ equi.nombre }}
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarEquipo"
+            (click)="obtenerEquiposID(equi._id)">Editar</button>
+            <div class="dropdown">
+              <button style="float: right" type="button" class="btn btn-light btn-sm" id="dropdownSettings"
+              data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownSettings">
+                <li><a class="dropdown-item">Editar</a></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalEliminarEquipo"
+                  (click)="obtenerEquiposID(equi._id)">Eliminar</a></li>
+              </ul>
+            </div>
+
+
+  <!-- Modal Agregar Ligas -->
+  <div class="modal fade" id="modalAgregarEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Equipo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputNombreEquipo" class="form-label">Nombre Liga</label>
+              <input type="text" class="form-control" id="inputNombreEquipo" name="nombreEquipo" #nombreEquipo="ngModel"
+              [(ngModel)]="equiposModel.nombre">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+          (click)="agregarEquipos()">Agregar Equipo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Editar Ligas -->
+  <div class="modal fade" id="modalEditarEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Equipo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inputNombre" class="form-label">Nombre Equipo</label>
+              <input type="text" class="form-control" id="inputNombre" name="nombreEquipo" #nombreEquipo="ngModel"
+              [(ngModel)]="equiposModel.nombre">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+          (click)="editarEquipos()">Editar Equipo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal Eliminar Ligas -->
+  <div class="modal fade" id="modalEliminarEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar Ligas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Esta seguro de eliminar la liga: {{ EquiposList.nombre }}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+          (click)="eliminarEquipos(EquiposList._id)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
